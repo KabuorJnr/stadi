@@ -2,22 +2,22 @@
 @section('title', 'Revenue')
 
 @section('content')
-<h1 class="text-2xl font-extrabold text-white">Revenue</h1>
+<h1 class="text-2xl font-semibold text-white">Revenue</h1>
 <p class="mt-1 text-sm text-gray-500">Transaction history & revenue breakdown</p>
 
 {{-- Filters --}}
-<form method="GET" class="mt-6 flex flex-wrap items-end gap-4 rounded-2xl bg-dark-100 p-4">
+<form method="GET" class="mt-6 flex flex-wrap items-end gap-4 rounded-lg bg-surface-100 p-4">
     <div>
         <label class="mb-1 block text-xs font-bold text-gray-500">From</label>
         <input type="date" name="from" value="{{ request('from') }}"
-               class="rounded-xl border border-white/10 bg-dark px-3 py-2 text-sm text-white focus:border-accent focus:ring-2 focus:ring-accent/20 focus:outline-none">
+               class="rounded-md border border-white/10 bg-surface px-3 py-2 text-sm text-white focus:border-accent focus:ring-2 focus:ring-accent/20 focus:outline-none">
     </div>
     <div>
         <label class="mb-1 block text-xs font-bold text-gray-500">To</label>
         <input type="date" name="to" value="{{ request('to') }}"
-               class="rounded-xl border border-white/10 bg-dark px-3 py-2 text-sm text-white focus:border-accent focus:ring-2 focus:ring-accent/20 focus:outline-none">
+               class="rounded-md border border-white/10 bg-surface px-3 py-2 text-sm text-white focus:border-accent focus:ring-2 focus:ring-accent/20 focus:outline-none">
     </div>
-    <button type="submit" class="rounded-xl bg-accent px-5 py-2 text-sm font-bold text-white transition hover:bg-accent-light">Filter</button>
+    <button type="submit" class="rounded-md bg-accent px-5 py-2 text-sm font-bold text-white transition hover:bg-accent-light">Filter</button>
     @if(request('from') || request('to'))
         <a href="{{ route('admin.revenue') }}" class="text-sm text-gray-500 hover:text-white">Clear</a>
     @endif
@@ -25,26 +25,26 @@
 
 {{-- Summary cards --}}
 <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-    <div class="rounded-2xl bg-dark-100 p-5">
+    <div class="rounded-lg bg-surface-100 p-5">
         <p class="text-xs font-bold uppercase tracking-wider text-gray-500">Total Revenue</p>
-        <p class="mt-2 text-3xl font-extrabold text-white">KES {{ number_format($summary->total) }}</p>
+        <p class="mt-2 text-3xl font-semibold text-white">KES {{ number_format($summary->total) }}</p>
     </div>
-    <div class="rounded-2xl bg-dark-100 p-5">
+    <div class="rounded-lg bg-surface-100 p-5">
         <p class="text-xs font-bold uppercase tracking-wider text-gray-500">Transactions</p>
-        <p class="mt-2 text-3xl font-extrabold text-white">{{ number_format($summary->count) }}</p>
+        <p class="mt-2 text-3xl font-semibold text-white">{{ number_format($summary->count) }}</p>
     </div>
-    <div class="rounded-2xl bg-dark-100 p-5">
+    <div class="rounded-lg bg-surface-100 p-5">
         <p class="text-xs font-bold uppercase tracking-wider text-gray-500">STK Push</p>
-        <p class="mt-2 text-3xl font-extrabold text-white">KES {{ number_format($summary->stk) }}</p>
+        <p class="mt-2 text-3xl font-semibold text-white">KES {{ number_format($summary->stk) }}</p>
     </div>
-    <div class="rounded-2xl bg-dark-100 p-5">
+    <div class="rounded-lg bg-surface-100 p-5">
         <p class="text-xs font-bold uppercase tracking-wider text-gray-500">C2B / Paybill</p>
-        <p class="mt-2 text-3xl font-extrabold text-white">KES {{ number_format($summary->c2b) }}</p>
+        <p class="mt-2 text-3xl font-semibold text-white">KES {{ number_format($summary->c2b) }}</p>
     </div>
 </div>
 
 {{-- Transactions table --}}
-<div class="mt-8 overflow-hidden rounded-2xl bg-dark-100">
+<div class="mt-8 overflow-hidden rounded-lg bg-surface-100">
     <table class="min-w-full text-sm">
         <thead class="border-b border-white/5 text-left text-xs font-bold uppercase tracking-wider text-gray-500">
             <tr>

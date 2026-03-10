@@ -3,14 +3,14 @@
 
 @section('content')
 <div class="flex items-center justify-between">
-    <h1 class="text-2xl font-extrabold text-white">Events</h1>
-    <a href="{{ route('admin.events.create') }}" class="inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-2.5 text-sm font-bold text-white transition hover:bg-accent-light">
+    <h1 class="text-2xl font-semibold text-white">Events</h1>
+    <a href="{{ route('admin.events.create') }}" class="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-bold text-white transition hover:bg-accent-light">
         <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
         New Event
     </a>
 </div>
 
-<div class="mt-6 overflow-hidden rounded-2xl bg-dark-100">
+<div class="mt-6 overflow-hidden rounded-lg bg-surface-100">
     <table class="min-w-full text-sm">
         <thead class="border-b border-white/5 text-left text-xs font-bold uppercase tracking-wider text-gray-500">
             <tr>
