@@ -2,51 +2,51 @@
 @section('title', 'Revenue')
 
 @section('content')
-<h1 class="text-2xl font-bold text-gray-900">Revenue</h1>
+<h1 class="text-2xl font-extrabold text-white">Revenue</h1>
 <p class="mt-1 text-sm text-gray-500">Transaction history & revenue breakdown</p>
 
 {{-- Filters --}}
-<form method="GET" class="mt-6 flex flex-wrap items-end gap-4 rounded-xl border bg-white p-4 shadow-sm">
+<form method="GET" class="mt-6 flex flex-wrap items-end gap-4 rounded-2xl bg-dark-100 p-4">
     <div>
-        <label class="mb-1 block text-xs font-medium text-gray-500">From</label>
+        <label class="mb-1 block text-xs font-bold text-gray-500">From</label>
         <input type="date" name="from" value="{{ request('from') }}"
-               class="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20">
+               class="rounded-xl border border-white/10 bg-dark px-3 py-2 text-sm text-white focus:border-accent focus:ring-2 focus:ring-accent/20 focus:outline-none">
     </div>
     <div>
-        <label class="mb-1 block text-xs font-medium text-gray-500">To</label>
+        <label class="mb-1 block text-xs font-bold text-gray-500">To</label>
         <input type="date" name="to" value="{{ request('to') }}"
-               class="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20">
+               class="rounded-xl border border-white/10 bg-dark px-3 py-2 text-sm text-white focus:border-accent focus:ring-2 focus:ring-accent/20 focus:outline-none">
     </div>
-    <button type="submit" class="rounded-lg bg-brand-500 px-5 py-2 text-sm font-semibold text-white transition hover:bg-brand-600">Filter</button>
+    <button type="submit" class="rounded-xl bg-accent px-5 py-2 text-sm font-bold text-white transition hover:bg-accent-light">Filter</button>
     @if(request('from') || request('to'))
-        <a href="{{ route('admin.revenue') }}" class="text-sm text-gray-400 hover:text-gray-600">Clear</a>
+        <a href="{{ route('admin.revenue') }}" class="text-sm text-gray-500 hover:text-white">Clear</a>
     @endif
 </form>
 
 {{-- Summary cards --}}
 <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-    <div class="rounded-xl border bg-white p-5 shadow-sm">
-        <p class="text-xs font-semibold uppercase tracking-wider text-gray-400">Total Revenue</p>
-        <p class="mt-2 text-3xl font-bold text-gray-900">KES {{ number_format($summary->total) }}</p>
+    <div class="rounded-2xl bg-dark-100 p-5">
+        <p class="text-xs font-bold uppercase tracking-wider text-gray-500">Total Revenue</p>
+        <p class="mt-2 text-3xl font-extrabold text-white">KES {{ number_format($summary->total) }}</p>
     </div>
-    <div class="rounded-xl border bg-white p-5 shadow-sm">
-        <p class="text-xs font-semibold uppercase tracking-wider text-gray-400">Transactions</p>
-        <p class="mt-2 text-3xl font-bold text-gray-900">{{ number_format($summary->count) }}</p>
+    <div class="rounded-2xl bg-dark-100 p-5">
+        <p class="text-xs font-bold uppercase tracking-wider text-gray-500">Transactions</p>
+        <p class="mt-2 text-3xl font-extrabold text-white">{{ number_format($summary->count) }}</p>
     </div>
-    <div class="rounded-xl border bg-white p-5 shadow-sm">
-        <p class="text-xs font-semibold uppercase tracking-wider text-gray-400">STK Push</p>
-        <p class="mt-2 text-3xl font-bold text-gray-900">KES {{ number_format($summary->stk) }}</p>
+    <div class="rounded-2xl bg-dark-100 p-5">
+        <p class="text-xs font-bold uppercase tracking-wider text-gray-500">STK Push</p>
+        <p class="mt-2 text-3xl font-extrabold text-white">KES {{ number_format($summary->stk) }}</p>
     </div>
-    <div class="rounded-xl border bg-white p-5 shadow-sm">
-        <p class="text-xs font-semibold uppercase tracking-wider text-gray-400">C2B / Paybill</p>
-        <p class="mt-2 text-3xl font-bold text-gray-900">KES {{ number_format($summary->c2b) }}</p>
+    <div class="rounded-2xl bg-dark-100 p-5">
+        <p class="text-xs font-bold uppercase tracking-wider text-gray-500">C2B / Paybill</p>
+        <p class="mt-2 text-3xl font-extrabold text-white">KES {{ number_format($summary->c2b) }}</p>
     </div>
 </div>
 
 {{-- Transactions table --}}
-<div class="mt-8 overflow-hidden rounded-xl border bg-white shadow-sm">
+<div class="mt-8 overflow-hidden rounded-2xl bg-dark-100">
     <table class="min-w-full text-sm">
-        <thead class="border-b bg-gray-50 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+        <thead class="border-b border-white/5 text-left text-xs font-bold uppercase tracking-wider text-gray-500">
             <tr>
                 <th class="px-5 py-3">Ref</th>
                 <th class="px-5 py-3">Phone</th>
@@ -56,23 +56,23 @@
                 <th class="px-5 py-3">Date</th>
             </tr>
         </thead>
-        <tbody class="divide-y">
+        <tbody class="divide-y divide-white/5">
             @forelse($transactions as $txn)
-            <tr class="hover:bg-gray-50 transition">
-                <td class="px-5 py-3 font-mono text-xs text-gray-600">{{ $txn->mpesa_receipt ?? '—' }}</td>
-                <td class="px-5 py-3 text-gray-700">{{ $txn->phone ?? '—' }}</td>
+            <tr class="hover:bg-white/5 transition">
+                <td class="px-5 py-3 font-mono text-xs text-gray-400">{{ $txn->mpesa_receipt ?? '—' }}</td>
+                <td class="px-5 py-3 text-gray-300">{{ $txn->phone ?? '—' }}</td>
                 <td class="px-5 py-3">
-                    <span class="rounded-full px-2 py-0.5 text-xs font-semibold
-                        {{ $txn->channel === 'stk_push' ? 'bg-purple-50 text-purple-700' : 'bg-blue-50 text-blue-700' }}">
+                    <span class="rounded-full px-2 py-0.5 text-xs font-bold
+                        {{ $txn->channel === 'stk_push' ? 'bg-purple-500/10 text-purple-400' : 'bg-accent/10 text-accent-light' }}">
                         {{ $txn->channel === 'stk_push' ? 'STK Push' : 'C2B' }}
                     </span>
                 </td>
-                <td class="px-5 py-3 font-medium text-gray-900">KES {{ number_format($txn->amount) }}</td>
+                <td class="px-5 py-3 font-bold text-white">KES {{ number_format($txn->amount) }}</td>
                 <td class="px-5 py-3">
-                    <span class="inline-flex items-center gap-1 text-xs font-semibold
-                        {{ $txn->status === 'completed' ? 'text-green-600' : ($txn->status === 'pending' ? 'text-yellow-600' : 'text-red-500') }}">
+                    <span class="inline-flex items-center gap-1 text-xs font-bold
+                        {{ $txn->status === 'completed' ? 'text-green-400' : ($txn->status === 'pending' ? 'text-yellow-400' : 'text-red-400') }}">
                         <span class="h-1.5 w-1.5 rounded-full
-                            {{ $txn->status === 'completed' ? 'bg-green-500' : ($txn->status === 'pending' ? 'bg-yellow-500' : 'bg-red-500') }}"></span>
+                            {{ $txn->status === 'completed' ? 'bg-green-400' : ($txn->status === 'pending' ? 'bg-yellow-400' : 'bg-red-400') }}"></span>
                         {{ ucfirst($txn->status) }}
                     </span>
                 </td>
@@ -80,7 +80,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="6" class="px-5 py-12 text-center text-gray-400">No transactions found</td>
+                <td colspan="6" class="px-5 py-12 text-center text-gray-600">No transactions found</td>
             </tr>
             @endforelse
         </tbody>
